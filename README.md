@@ -1,4 +1,5 @@
 # SISTEMA-DE-GERENCIAMENTO-DE-BIBLIOTECA
+[README.md](README.md)
 
 Um sistema de gerenciamento de bibliotecas escrito em Java é uma aplicação de software projetada para automatizar e facilitar as operações de uma biblioteca. Bibliotecas desempenham um papel crucial na disseminação do conhecimento e na promoção da cultura, tornando fundamental o uso de tecnologia para gerenciar eficazmente seus recursos e serviços. O Java, sendo uma linguagem de programação versátil e amplamente utilizada, oferece um ambiente sólido para o desenvolvimento de sistemas de gerenciamento de bibliotecas eficientes e confiáveis.
 
