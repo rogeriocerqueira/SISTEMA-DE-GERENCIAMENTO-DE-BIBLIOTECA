@@ -2,6 +2,7 @@ package Model;
 
 public class Book {
 
+    private String idBook;
     private String isbn;
     private String title;
     private String author;
@@ -66,5 +67,13 @@ public class Book {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getIdBook() {
+        return idBook;
+    }
+
+    public void setIdBook(String idBook) {
+        this.idBook = idBook;
     }
 }
