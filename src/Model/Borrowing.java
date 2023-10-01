@@ -14,6 +14,8 @@ public class Borrowing {
     private Date dEnd;
     private boolean rSituation;
 
+    /*SETS E GETS*/
+
     public String getIdB() {
         return idB;
     }
