@@ -1,19 +1,20 @@
-package Model.DAO;
+package Controller;
 
 import Model.Book;
 import Model.Borrowing;
+import Model.DAO.BorrowingDAO;
 import java.util.Date;
 import java.util.ArrayList;
 
-public class BorrowingDAOImp implements BorrowingDAO{
+public class ControllerBorrowing {
 
     ArrayList <Borrowing> BorrowingList = new ArrayList<>();
 
     ArrayList <Borrowing> historic = new ArrayList<>();
 
 
-    @Override
-    public void create (String idB, String idUser, String userName, String isbn, String bookName, Date dStart, boolean rSituation, BookDAOImp BookImp){
+
+    public void createBorrowing(String idB, String idUser, String userName, String isbn, String bookName, Date dStart, boolean rSituation, ControllerBook BookImp){
 
         Borrowing borrowing = new Borrowing();
 
@@ -35,8 +36,8 @@ public class BorrowingDAOImp implements BorrowingDAO{
         BorrowingList.add(borrowing);
 
     }
-    @Override
-    public Borrowing read(String idB, String whichList){
+
+    public Borrowing readBorrowing(String idB, String whichList){
 
         Borrowing actualB = new Borrowing();
 
@@ -64,8 +65,8 @@ public class BorrowingDAOImp implements BorrowingDAO{
 
         return actualB;
     }
-    @Override
-    public void update(String idB, String nIdUser, String nUserName, String nIsbn, String nBookName){
+
+    public void updateBorrowing(String idB, String nIdUser, String nUserName, String nIsbn, String nBookName){
 
         for (Borrowing borrowing : BorrowingList){
 
@@ -88,8 +89,8 @@ public class BorrowingDAOImp implements BorrowingDAO{
         }
     }
 
-    @Override
-    public void delete(String idB){
+
+    public void deleteBorrowing(String idB){
 
         int index = 0;
 
