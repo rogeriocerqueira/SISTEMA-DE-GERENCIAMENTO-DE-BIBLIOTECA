@@ -1,6 +1,5 @@
 package Model.DAO;
 import Model.Administrator;
-
 import java.util.ArrayList;
 
 public interface AdministratorDAO {
