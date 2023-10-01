@@ -1,14 +1,15 @@
-package Model.DAO;
+package Controller;
 
 import Model.Book;
-import  java.util.ArrayList;
+import Model.DAO.BookDAO;
+import java.util.ArrayList;
 
-public class BookDAOImp implements BookDAO{
+public class ControllerBook {
 
     ArrayList <Book> collection = new ArrayList<>();
 
-    @Override
-    public void create(String idBook, String isbn, String title, String author, String publisher, String year, String category, int number){
+
+    public void createBook(String idBook, String isbn, String title, String author, String publisher, String year, String category, int number){
 
         Book book = new Book();
 
@@ -23,8 +24,8 @@ public class BookDAOImp implements BookDAO{
 
         collection.add(book);
     }
-    @Override
-    public ArrayList<Book> read(String isbn, String title, String author, String category){
+
+    public ArrayList<Book> readBook(String isbn, String title, String author, String category){
 
         ArrayList<Book> seach = new ArrayList<>();
 
@@ -45,8 +46,8 @@ public class BookDAOImp implements BookDAO{
         return seach;
     }
 
-    @Override
-    public void update(String idBook,String nIsbn, String nTitle, String nAuthor, String nPublisher, String nYear, String nCategory, int nNumber){
+
+    public void updateBook(String idBook,String nIsbn, String nTitle, String nAuthor, String nPublisher, String nYear, String nCategory, int nNumber){
 
         for (Book book : collection){
 
@@ -76,8 +77,8 @@ public class BookDAOImp implements BookDAO{
             }
         }
     }
-    @Override
-    public void delete(String idBook){
+
+    public void deleteBook(String idBook){
 
         int index = 0;
 
