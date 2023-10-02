@@ -7,28 +7,15 @@ import java.util.Random;
 
 public class Functions {
 
-    public String generateId(String typeId, ArrayList<String> specificList) {
+    public String generateId(String typeId) {
 
-        boolean equal = false;
         String code;
 
-        do {
+        Random random = new Random();
+        int n = random.nextInt(100000000);
+        String nS = String.valueOf(n);
 
-            Random random = new Random();
-            int n = random.nextInt(100000000);
-            String nS = String.valueOf(n);
-
-            code = typeId + nS;
-
-            for (String idE :specificList) {
-                if (idE.equals(code)) {
-                     equal = true;
-
-                }
-
-            }
-
-        } while (equal == true);
+        code = typeId + nS;
 
         return code;
 
