@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Date;
+import java.util.Calendar;
 
 public class Borrowing {
 
@@ -9,9 +10,9 @@ public class Borrowing {
     private String userName;
     private String isbn;
     private String bookName;
-    private Date dStart;
-    private Date devolution;
-    private Date dEnd;
+    private Calendar dStart;
+    private Calendar devolution;
+    private Calendar dEnd;
     private boolean rSituation;
 
     /*SETS E GETS*/
@@ -56,27 +57,27 @@ public class Borrowing {
         this.bookName = bookName;
     }
 
-    public Date getdStart() {
+    public Calendar getdStart() {
         return dStart;
     }
 
-    public void setdStart(Date dStart) {
+    public void setdStart(Calendar dStart) {
         this.dStart = dStart;
     }
 
-    public Date getDevolution() {
+    public Calendar getDevolution() {
         return devolution;
     }
 
-    public void setDevolution(Date devolution) {
+    public void setDevolution(Calendar devolution) {
         this.devolution = devolution;
     }
 
-    public Date getdEnd() {
+    public Calendar getdEnd() {
         return dEnd;
     }
 
-    public void setdEnd(Date dEnd) {
+    public void setdEnd(Calendar dEnd) {
         this.dEnd = dEnd;
     }
 
