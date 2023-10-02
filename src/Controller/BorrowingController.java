@@ -2,19 +2,18 @@ package Controller;
 
 import Model.Book;
 import Model.Borrowing;
-import Model.DAO.BorrowingDAO;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.ArrayList;
 
-public class ControllerBorrowing {
+public class BorrowingController {
 
-    ArrayList <Borrowing> BorrowingList = new ArrayList<>();
+    ArrayList <Borrowing> borrowingList = new ArrayList<>();
 
     ArrayList <Borrowing> historic = new ArrayList<>();
 
 
 
-    public void createBorrowing(String idB, String idUser, String userName, String isbn, String bookName, Date dStart, boolean rSituation, ControllerBook BookImp){
+    public void createBorrowing(String idB, String idUser, String userName, String isbn, String bookName, Calendar dStart, boolean rSituation, BookController BookImp){
 
         Borrowing borrowing = new Borrowing();
 
@@ -33,7 +32,7 @@ public class ControllerBorrowing {
             }
         }
 
-        BorrowingList.add(borrowing);
+        borrowingList.add(borrowing);
 
     }
 
@@ -43,7 +42,7 @@ public class ControllerBorrowing {
 
         if(whichList.equals("0")){
 
-            for(Borrowing borrowing : BorrowingList){
+            for(Borrowing borrowing : borrowingList){
 
                 if(idB.equals(borrowing.getIdB())){
                     actualB = borrowing;
@@ -68,7 +67,7 @@ public class ControllerBorrowing {
 
     public void updateBorrowing(String idB, String nIdUser, String nUserName, String nIsbn, String nBookName){
 
-        for (Borrowing borrowing : BorrowingList){
+        for (Borrowing borrowing : borrowingList){
 
             if(borrowing.getIdB().equals(idB)){
 
@@ -94,15 +93,17 @@ public class ControllerBorrowing {
 
         int index = 0;
 
-        for(Borrowing borrowing : BorrowingList){
+        for(Borrowing borrowing : borrowingList){
 
             if (borrowing.getIdB().equals(idB)){
-                BorrowingList.remove(index);
+                borrowingList.remove(index);
             }
             else {
                 index = index +1;
             }
         }
     }
+
+
 
 }
