@@ -1,7 +1,5 @@
 package Controller;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -22,17 +20,16 @@ public class Functions {
     }
     
     public Calendar actualDater(){
-        Calendar date = Calendar.getInstance();
-        
-        return date;
+
+        return Calendar.getInstance();
     }
 
-    public void receiveDater(){
+    public Calendar receiveDater(){
 
         int plus = 7;
         Calendar date = Calendar.getInstance();
 
-        if(date.get(Calendar.DAY_OF_MONTH) >= 25 && date.get(Calendar.MONTH) == 12){
+        if(date.get(Calendar.DAY_OF_MONTH) >= 25 && date.get(Calendar.MONTH) == Calendar.DECEMBER){
 
             int m = (date.get(Calendar.DAY_OF_MONTH) + plus) - 31;
 
@@ -47,6 +44,9 @@ public class Functions {
             date.set(Calendar.DAY_OF_MONTH, plus);
 
         }
+        else { date.add(Calendar.DAY_OF_MONTH,plus);}
+
+        return date;
 
     }
 
@@ -55,15 +55,22 @@ public class Functions {
         int block = 0;
         boolean confirm = dEnd.after(devolution);
 
-        if(confirm == true){
+        if(confirm){
+
+            if(dEnd.get(Calendar.MONTH) > devolution.get(Calendar.MONTH)){
 
             int finish = dEnd.get(Calendar.DAY_OF_MONTH);
             int expected = devolution.get(Calendar.DAY_OF_MONTH);
 
-            block = (finish - expected) * 2;
+            block = ((31-expected) + finish) * 2;
+            }
+            else{
+
+                int finish = dEnd.get(Calendar.DAY_OF_MONTH);
+                int expected = devolution.get(Calendar.DAY_OF_MONTH);
+                block = (finish - expected) * 2; }
 
         }
-
 
         return block;
     }
