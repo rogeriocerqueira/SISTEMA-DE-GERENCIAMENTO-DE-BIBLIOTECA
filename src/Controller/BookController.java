@@ -1,10 +1,9 @@
 package Controller;
 
 import Model.Book;
-import Model.DAO.BookDAO;
 import java.util.ArrayList;
 
-public class ControllerBook {
+public class BookController {
 
     ArrayList <Book> collection = new ArrayList<>();
 
@@ -23,6 +22,7 @@ public class ControllerBook {
         book.setNumber(number);
 
         collection.add(book);
+
     }
 
     public ArrayList<Book> readBook(String isbn, String title, String author, String category){
