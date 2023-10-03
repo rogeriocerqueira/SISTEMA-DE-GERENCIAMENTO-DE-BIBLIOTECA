@@ -1,6 +1,16 @@
 package Controller;
+import Controller.UserController;
+import Model.Book;
+import Controller.Functions;
+import Controller.BorrowingController;
+import Model.Borrowing;
 import Model.Librarian;
+import Model.DAO.BorrowingDAO;
+import Model.User;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class LibrarianController {
 
@@ -82,5 +92,36 @@ public class LibrarianController {
                 index = index + 1;
             }
         }
+    }
+
+    public Borrowing borrowingLibrarian(Borrowing borrowing, User user, ArrayList<Book> borrowedBooks, Book book) {
+
+        Functions bfunctions = new Functions();
+
+        String newIdB = bfunctions.generateId("br");
+        String nidUser = bfunctions.generateId("us");
+        String nUserName = borrowing.getUserName();
+        String nIsbn = borrowing.getIsbn();
+        String nBookName = borrowing.getBookName();
+        Calendar ndStart = borrowing.getdStart();
+        Calendar nDevolution = borrowing.getDevolution();
+        Calendar nEnd = borrowing.getdEnd();
+
+        if(nSituation == false) {
+
+            if(borrowedBooks.isEmpty()){
+                System.out.println("Nenhum livro emprestado.");
+
+            } else borrowedBooks.add(book);
+
+        }return borrowing;
+
+        }
+    public void blockUser(Borrowing borrowing, User user, ArrayList<Book> borrowedBooks){
+        if(borrowing.getrSituation()!=false){
+            System.out.println("Usuario nao pode pegar livro emprestado.");
+        }
+
+
     }
 }
