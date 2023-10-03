@@ -1,6 +1,9 @@
 package Controller;
 import Model.User;
+import Model.Book;
+import Model.DAO.UserDAO;
 import java.util.ArrayList;
+
 
 public class UserController {
 
@@ -71,16 +74,15 @@ public class UserController {
         }
     }
 
-    public void deleteUser(String idUser){
+    public void deleteUser(String idUser) {
 
         int index = 0;
 
-        for (User user : collection){
+        for (User user : collection) {
 
-            if(user.getId().equals(idUser)){
+            if (user.getId().equals(idUser)) {
                 collection.remove(index);
-            }
-            else{
+            } else {
                 index = index + 1;
             }
         }
