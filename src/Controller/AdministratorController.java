@@ -5,7 +5,13 @@ import java.util.ArrayList;
 public class AdministratorController {
 
     ArrayList <Administrator> collection = new ArrayList<>();
-
+    /*
+    * @param name String - nome do administrador
+    * @param cpf String - cpf do administrador
+    * @param office String -  profissão do administrador
+    * @param age int - idade do administrador
+    * @param email String do administrador
+    *  */
     public void create(String name, String cpf, String office, int age, String nPhone, String email){
         Administrator administrator = new Administrator();
 
@@ -71,6 +77,7 @@ public class AdministratorController {
         }
     }
 
+/*@param idAdministrator String  - id gerado para identificação do objeto administrador*/
     public void deleteAdministrator(String idAdministrator){
 
         int index = 0;
