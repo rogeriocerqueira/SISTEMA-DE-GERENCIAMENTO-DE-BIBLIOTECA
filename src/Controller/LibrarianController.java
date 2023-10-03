@@ -106,6 +106,7 @@ public class LibrarianController {
         Calendar ndStart = borrowing.getdStart();
         Calendar nDevolution = borrowing.getDevolution();
         Calendar nEnd = borrowing.getdEnd();
+        Boolean nSituation = borrowing.getrSituation();
 
         if(nSituation == false) {
 
@@ -116,7 +117,7 @@ public class LibrarianController {
 
         }return borrowing;
 
-        }
+    }
     public void blockUser(Borrowing borrowing, User user, ArrayList<Book> borrowedBooks){
         if(borrowing.getrSituation()!=false){
             System.out.println("Usuario nao pode pegar livro emprestado.");
