@@ -81,7 +81,7 @@ public class Borrowing {
         this.dEnd = dEnd;
     }
 
-    public boolean isrSituation() {
+    public boolean getrSituation() {
         return rSituation;
     }
 
