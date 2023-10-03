@@ -5,6 +5,14 @@ import Model.Borrowing;
 import java.util.Calendar;
 import java.util.ArrayList;
 
+
+/**Classe destinada a controlar o jogo de valor das classes relacionadas a emprestimo.
+ * @author João Macedo e Rogério Cerqueira
+ * @version 1.0
+ *
+ */
+
+
 public class BorrowingController {
 
     ArrayList <Borrowing> borrowingList = new ArrayList<>();
@@ -12,6 +20,8 @@ public class BorrowingController {
     ArrayList <Borrowing> historic = new ArrayList<>();
 
 
+    /** Método para criar um emprestimo.
+     * @return void - Emprestimo*/
 
     public void createBorrowing(String idB, String idUser, String userName, String isbn, String bookName, Calendar dStart, boolean rSituation, BookController BookImp){
 
@@ -35,6 +45,11 @@ public class BorrowingController {
         borrowingList.add(borrowing);
 
     }
+
+    /** Método para ler um emprestimo.
+     * @return Borrowing - Emprestimo*
+     * @param idB String - id de busca*
+     * @param whichList ArrayList<String> - lista de emprestimo/reserva ou histórico de emprestimos*/
 
     public Borrowing readBorrowing(String idB, String whichList){
 
@@ -65,6 +80,13 @@ public class BorrowingController {
         return actualB;
     }
 
+    /** Método para atualizar um emprestimo.
+     * @param idB String - id de busca*
+     * @param nIdUser String - novo id do usuario*
+     * @param nUserName String - novo nome do usuario*
+     * @param nIsbn String - isbn correto*
+     * @param nBookName String - nome do livro correto*/
+
     public void updateBorrowing(String idB, String nIdUser, String nUserName, String nIsbn, String nBookName){
 
         for (Borrowing borrowing : borrowingList){
@@ -89,6 +111,8 @@ public class BorrowingController {
     }
 
 
+    /** Método para excluir um emprestimo.
+     *@param idB String - id de busca*/
     public void deleteBorrowing(String idB){
 
         int index = 0;

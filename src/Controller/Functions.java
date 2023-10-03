@@ -3,7 +3,17 @@ package Controller;
 import java.util.Calendar;
 import java.util.Random;
 
+/**Classe destinada a gerar id's e responsavel pela manipulação de tempo.
+ * @author João Macedo e Rogério Cerqueira
+ * @version 1.0
+ *
+ */
+
 public class Functions {
+
+    /** Método para retorno id.
+     * @return String - id*
+     * @param typeId String - Tipo de id solicitado*/
 
     public String generateId(String typeId) {
 
@@ -18,11 +28,16 @@ public class Functions {
         return code;
 
     }
-    
+
+    /** Método para retorno datas.
+     * @return Calendar - Data*/
     public Calendar actualDater(){
 
         return Calendar.getInstance();
     }
+
+    /** Método responsavel por determinar a data de entrega.
+     * @return Calendar - Data de entrega*/
 
     public Calendar receiveDater(){
 
@@ -50,6 +65,11 @@ public class Functions {
 
     }
 
+    /** Método responsavel por determinar o tempo de bloqueio.
+     * @return int - Multa*
+     * @param dEnd Calendar - Datal que o livro foi devolvido/ emprestimo encrrado*
+     * @param devolution Calendar - Data da estipulada devolução.*/
+
     public int blockerDater(Calendar dEnd, Calendar devolution){
 
         int block = 0;
@@ -75,9 +95,16 @@ public class Functions {
         return block;
     }
 
+    /** Método responsavel por determinar o status de emprestimo de um usuario.
+     * @return boolean - status*/
+
     public boolean changeStatus (){
         return true;
     }
+
+    /** Método responsavel por determinar se um usuario já está apto a fazer emprestimos.
+     * @return boolean - status *
+     * @param conferee Calendar - Dia maximo de bloqueio*/
 
     public boolean cofereeBlock(Calendar conferee){
         boolean status = true;
