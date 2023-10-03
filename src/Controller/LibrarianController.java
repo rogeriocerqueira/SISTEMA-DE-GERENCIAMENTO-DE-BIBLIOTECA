@@ -15,7 +15,13 @@ import java.util.Date;
 public class LibrarianController {
 
     ArrayList <Librarian> collection = new ArrayList<>();
-
+    /*
+    * @param name String - nome do bibliotecário
+    * @param cpf String - cpf do bibliotecário
+    * @param office String -  profissão do bibliotecário
+    * @param age int - idade do bibliotecário
+    * @param email String do bibliotecário
+    *  */
     public void create(String name, String cpf, String office, int age, String nPhone, String email){
         Librarian librarian = new Librarian();
 
@@ -48,7 +54,9 @@ public class LibrarianController {
         }
         return seach;
     }
-
+    /*
+    * @param idLibrarian String id gerado pela classe de função de forma aleartória necessário para atualização e identificação única de cada bibliotecário
+    * */
     public void updateLibrarian(String idLibrarian,String nName, String nCpf, String nOffice, int nAge, String nPhone, String nEmail) {
 
         for (Librarian librarian : collection) {
@@ -94,6 +102,9 @@ public class LibrarianController {
         }
     }
 
+    /*
+    * @param borrowing Borrowing - Tipo de classe responsável pelo empréstimo
+    *  @return borrowing retorna um tipo Borrowing  que contém as informações do empréstimo do(s) livros*/
     public Borrowing borrowingLibrarian(Borrowing borrowing, User user, ArrayList<Book> borrowedBooks, Book book) {
 
         Functions bfunctions = new Functions();
