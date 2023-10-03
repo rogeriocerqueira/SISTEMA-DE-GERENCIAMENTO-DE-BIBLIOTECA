@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.Date;
 import java.util.Calendar;
 
 public class Borrowing {
@@ -81,7 +80,7 @@ public class Borrowing {
         this.dEnd = dEnd;
     }
 
-    public boolean isrSituation() {
+    public boolean getrSituation() {
         return rSituation;
     }
 
@@ -89,3 +88,5 @@ public class Borrowing {
         this.rSituation = rSituation;
     }
 }
+
+
