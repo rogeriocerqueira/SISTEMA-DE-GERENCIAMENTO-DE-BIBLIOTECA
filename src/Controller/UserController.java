@@ -6,9 +6,14 @@ import java.util.ArrayList;
 
 
 public class UserController {
-
     ArrayList <User> collection = new ArrayList<>();
-
+    /*
+     * @param name String - nome do usuário
+     * @param cpf String - cpf do usuário
+     * @param office String -  profissão do usuário
+     * @param age int - idade do usuário
+     * @param email String do usuário
+     *  */
     public void create(String name, String cpf, String office, int age, String nPhone, String email){
         User user = new User();
 
@@ -43,7 +48,9 @@ public class UserController {
         return seach;
     }
 
-
+    /*
+     * @param idLibrarian String id gerado pela classe de função de forma aleartória necessário para atualização e identificação única de cada usuário
+     * */
     public void updateUser(String idUser,String nName, String nCpf, String nOffice, int nAge, String nPhone, String nEmail) {
 
         for (User user : collection) {
