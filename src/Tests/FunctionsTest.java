@@ -30,6 +30,7 @@ public class FunctionsTest {
         assertNotEquals(id1,id2);
     }
 
+    @org.junit.Test
     @Test
     public void testActualDater(){
 
