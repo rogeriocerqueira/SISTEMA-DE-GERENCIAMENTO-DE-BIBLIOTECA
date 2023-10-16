@@ -5,10 +5,16 @@ import Model.User;
 import java.util.ArrayList;
 
 public class UserDAOImp implements UserDAO{
-    public void create(String name, String cpf, String office, int age, String nPhone, String email){}
-    public ArrayList<User> read(String cpf){ArrayList<User> userList = new ArrayList<>();
-    return userList;
+
+    @Override
+    public void create(String id, String name, String cpf, String office, int age, String nPhone, String email){}
+    @Override
+    public User read(String id){
+        User aUser = new User();
+    return aUser;
     }
-    public void update(String name, String cpf, String office, int age, String nPhone, String email){}
+    @Override
+    public void update(String id, String name, String cpf, String office, int age, String nPhone, String email){}
+    @Override
     public void delete(String cpf){}
 }
