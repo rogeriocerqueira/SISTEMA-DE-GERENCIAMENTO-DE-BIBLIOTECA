@@ -1,14 +1,14 @@
 package Model.DAO;
 
 import Model.Book;
-
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public interface BookDAO {
 
-    public void create(Book aBook);
-    public ArrayList<Book> read(String isbn, String title, String author, String category);
-    public void update(String idBook, Book aBook);
-    public void delete(String idBook);
+    public String record(Book aBook) throws IOException;
+
+    public ArrayList<File> recover();
 
 }
