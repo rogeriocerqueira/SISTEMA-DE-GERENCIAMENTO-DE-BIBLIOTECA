@@ -1,5 +1,9 @@
 package Controller;
 
+import Model.Book;
+import Model.Borrowing;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -114,6 +118,48 @@ public class Functions {
         if(conferee.before(actual)){status = false;}
 
      return status;
+    }
+
+    /*public void registerBook(ArrayList<Book> collection){}
+    public void searchBook(ArrayList<Book> collection){}*/
+
+    public void loanBook(ArrayList<Book> collection, ArrayList <Borrowing> loans){
+
+
+    }
+    public void devolution(String idBorrow, ArrayList<Book> collection, ArrayList <Borrowing> loans, ArrayList<Borrowing> finished){
+
+        String menssage;
+        int i1 = 0;
+
+        for (Borrowing borrowing : loans) {
+            if(idBorrow.equals(borrowing.getIdB()) && borrowing.getrSituation().equals("1")){
+                borrowing.setrSituation("3");
+                finished.add(borrowing);
+                loans.remove(i1);
+
+                /*Parte do Dao - Salvar na pasta de emprestimos finalizados*/
+            }
+            i1 += 1;
+        }
+
+        int i2 = finished.size() - 1;
+
+        for(int i = 0; i < loans.size(); i++){
+            if(loans.get(i).getIsbn().equals(finished.get(i2).getIsbn()) && loans.get(i).getrSituation().equals("2")){ /* Se houver uma reserva(2 - Reserva) do livro devolvido no momento, então o livro será atribuido para essa reserva*/
+                loans.get(i).setrSituation("1");
+            }
+            else{
+                for(Book book : collection){
+                    if(book.getIsbn().equals(finished.get(i2).getIsbn())){
+                        int n = book.getNumber() + 1;
+                        book.setNumber(n);
+                    }
+
+                }
+            }
+        }
+
     }
 
 }
