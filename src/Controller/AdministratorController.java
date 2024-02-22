@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class AdministratorController {
 
-    ArrayList <Administrator> collection = new ArrayList<>();
     /*
     * @param name String - nome do administrador
     * @param cpf String - cpf do administrador
@@ -12,46 +11,44 @@ public class AdministratorController {
     * @param age int - idade do administrador
     * @param email String do administrador
     *  */
-    public void create(String name, String cpf, String office, int age, String nPhone, String email){
+
+    Functions function = new Functions();
+
+    public void createAdm(ArrayList<Administrator> aCollection, String name, String cpf, String nPhone, String email){
+
         Administrator administrator = new Administrator();
 
+        administrator.setId(function.generateId("a"));
         administrator.setName(name);
         administrator.setCpf(cpf);
-        administrator.setOffice(office);
-        administrator.setAge(age);
+        administrator.setOffice("Administrador");
         administrator.setnPhone(nPhone);
         administrator.setEmail(email);
-        collection.add(administrator);
+        aCollection.add(administrator);
+
     }
 
-    public ArrayList<Administrator> readAdministrator(String name, String cpf, String office, int age, String nPhone, String email){
+    public Administrator readAdm(ArrayList<Administrator> aCollection,String id, String name, String cpf){
 
-        ArrayList<Administrator> seach = new ArrayList<>();
+        Administrator search = new Administrator();
 
-        for (Administrator administrator : collection){
+        for (Administrator administrator : aCollection){
 
-            String aName = administrator.getName();
-            String aCpf = administrator.getCpf();
-            String aOffice = administrator.getOffice();
-            int aAge = administrator.getAge();
-            String anPhone = administrator.getnPhone();
-            String aEmail = administrator.getEmail();
+            if(administrator.getId().equals(id) || administrator.getName().equals(name) || administrator.getCpf().equals(cpf) ){
 
-            if(aName.equals(name) || aCpf.equals(cpf) || aOffice.equals(office) || aAge == age || anPhone.equals(nPhone) || aEmail.equals(email) ){
-
-                seach.add(administrator);
+                search = administrator;
             }
 
         }
-        return seach;
+        return search;
     }
 
 
-    public void updateAdministrator(String idAdministrator,String nName, String nCpf, String nOffice, int nAge, String nPhone, String nEmail) {
+    public void updateAdm(ArrayList<Administrator> aCollection, String id,String nName, String nCpf, String nPhone, String nEmail) {
 
-        for (Administrator administrator : collection) {
+        for (Administrator administrator : aCollection){
 
-            if (administrator.getName().equals(idAdministrator)) {
+            if (administrator.getId().equals(id)) {
 
                 if (nName != null) {
                     administrator.setName(nName);
@@ -60,12 +57,7 @@ public class AdministratorController {
                 if (nCpf != null){
                     administrator.setCpf(nCpf);
                 }
-                if (nOffice != null ){
-                    administrator.setOffice(nOffice);
-                }
-                if (administrator.getAge() == 0){
-                    administrator.setAge(nAge);
-                }
+
                 if (administrator.getnPhone() != null){
                     administrator.setnPhone(nPhone);
                 }
@@ -78,14 +70,14 @@ public class AdministratorController {
     }
 
 /*@param idAdministrator String  - id gerado para identificação do objeto administrador*/
-    public void deleteAdministrator(String idAdministrator){
+    public void deleteAdm(ArrayList<Administrator> aCollection, String id){
 
         int index = 0;
 
-        for (Administrator administrator : collection){
+        for (Administrator administrator : aCollection){
 
-            if(administrator.getId().equals(idAdministrator)){
-                collection.remove(index);
+            if(administrator.getId().equals(id)){
+                aCollection.remove(index);
             }
             else{
                 index = index + 1;

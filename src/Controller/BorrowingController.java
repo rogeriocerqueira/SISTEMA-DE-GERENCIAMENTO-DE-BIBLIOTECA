@@ -15,83 +15,77 @@ import java.util.ArrayList;
 
 public class BorrowingController {
 
-    ArrayList <Borrowing> borrowingList = new ArrayList<>();
-
-    ArrayList <Borrowing> historic = new ArrayList<>();
-
-
     /** Método para criar um emprestimo.
      * @return void - Emprestimo*/
 
-    public void createBorrowing(String idB, String idUser, String userName, String isbn, String bookName, Calendar dStart, boolean rSituation, BookController BookImp){
+    Functions function = new Functions();
+
+    public String createBorrow(ArrayList<Borrowing> bingCollection, ArrayList<Book> bCollection, String idUser, String userName, String isbn, String bookName){
 
         Borrowing borrowing = new Borrowing();
+        String sms = null;
 
-        borrowing.setIdB(idB);
+        borrowing.setIdB(function.generateId("r"));
         borrowing.setIdUser(idUser);
         borrowing.setUserName(userName);
         borrowing.setIsbn(isbn);
         borrowing.setBookName(bookName);
-        borrowing.setdStart(dStart);
+        borrowing.setdStart(function.actualDater());
 
-        for (Book book : BookImp.collection){
+        for (Book book : bCollection){
 
-            if(book.getIdBook().equals(idB)) {
+            if(book.getIsbn().equals(isbn) && book.getTitle().equals(bookName)) {
 
-                borrowing.setrSituation(book.getNumber() >= 1);
+                if(book.getNumber() <= 0){
+                    book.setNumber(0);
+                    borrowing.setrSituation("2"); /* 2 - Reserva */
+                    bingCollection.add(borrowing);
+                    sms = "Livro indisponível, reserva realizada.";
+                }
+                else{
+                    int n = book.getNumber() - 1;
+                    book.setNumber(n);
+                    borrowing.setrSituation("1"); /* 1 - Empréstimo em vigor */
+                    bingCollection.add(borrowing);
+                    sms = "Empréstimo realizado, retire o livro.";
+                }
             }
         }
-
-        borrowingList.add(borrowing);
-
+        return sms;
     }
 
     /** Método para ler um emprestimo.
      * @return Borrowing - Emprestimo*
-     * @param idB String - id de busca*
-     * @param whichList ArrayList<String> - lista de emprestimo/reserva ou histórico de emprestimos*/
+     * @param id String - id de busca*
+     * @param bingCollection ArrayList<String> - lista de emprestimo/reserva ou histórico de emprestimos*/
 
-    public Borrowing readBorrowing(String idB, String whichList){
+    public Borrowing readBorrowing( ArrayList<Borrowing> bingCollection, String id){
 
-        Borrowing actualB = new Borrowing();
+        Borrowing search = new Borrowing();
 
-        if(whichList.equals("0")){
+        for(Borrowing borrowing : bingCollection){
 
-            for(Borrowing borrowing : borrowingList){
-
-                if(idB.equals(borrowing.getIdB())){
-                    actualB = borrowing;
-
-                }
-            }
-        }
-        else{
-            for(Borrowing borrowing : historic){
-
-                if(idB.equals(borrowing.getIdB())){
-                    actualB = borrowing;
-
-                }
+            if(borrowing.getIdB().equals(id)){
+                search = borrowing;
 
             }
-
         }
 
-        return actualB;
+        return search;
     }
 
     /** Método para atualizar um emprestimo.
-     * @param idB String - id de busca*
+     * @param id String - id de busca*
      * @param nIdUser String - novo id do usuario*
      * @param nUserName String - novo nome do usuario*
      * @param nIsbn String - isbn correto*
      * @param nBookName String - nome do livro correto*/
 
-    public void updateBorrowing(String idB, String nIdUser, String nUserName, String nIsbn, String nBookName){
+    public void updateBorrow(ArrayList<Borrowing> bingCollection , String id, String nIdUser, String nUserName, String nIsbn, String nBookName){
 
-        for (Borrowing borrowing : borrowingList){
+        for (Borrowing borrowing : bingCollection){
 
-            if(borrowing.getIdB().equals(idB)){
+            if(borrowing.getIdB().equals(id)){
 
                 if(nIdUser != null){
                     borrowing.setIdUser(nIdUser);
@@ -112,22 +106,20 @@ public class BorrowingController {
 
 
     /** Método para excluir um emprestimo.
-     *@param idB String - id de busca*/
-    public void deleteBorrowing(String idB){
+     *@param id String - id de busca*/
+    public void deleteBorrow(ArrayList<Borrowing> bingCollection, String id){
 
         int index = 0;
 
-        for(Borrowing borrowing : borrowingList){
+        for(Borrowing borrowing : bingCollection){
 
-            if (borrowing.getIdB().equals(idB)){
-                borrowingList.remove(index);
+            if (borrowing.getIdB().equals(id)){
+                bingCollection.remove(index);
             }
             else {
                 index = index +1;
             }
         }
     }
-
-
 
 }

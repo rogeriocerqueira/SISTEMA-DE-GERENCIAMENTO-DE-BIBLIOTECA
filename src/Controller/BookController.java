@@ -1,18 +1,16 @@
 package Controller;
-
 import Model.Book;
 import java.util.ArrayList;
 
 public class BookController {
 
-    ArrayList <Book> collection = new ArrayList<>();
+    Functions function = new Functions();
 
-
-    public void createBook(String idBook, String isbn, String title, String author, String publisher, String year, String category, int number){
+    public void createBook(ArrayList<Book> bCollection, String isbn, String title, String author, String publisher, String year, String category, int number){
 
         Book book = new Book();
 
-        book.setIdBook(idBook);
+        book.setIdBook(function.generateId("b"));
         book.setIsbn(isbn);
         book.setTitle(title);
         book.setAuthor(author);
@@ -21,37 +19,30 @@ public class BookController {
         book.setCategory(category);
         book.setNumber(number);
 
-        collection.add(book);
+        bCollection.add(book);
 
     }
 
-    public ArrayList<Book> readBook(String isbn, String title, String author, String category){
+    public ArrayList<Book> readBook(ArrayList<Book> bCollection, String isbn, String title, String author, String category){
 
-        ArrayList<Book> seach = new ArrayList<>();
+        ArrayList<Book> search = new ArrayList<>();
 
-        for (Book book : collection){
+        for (Book book : bCollection){
 
-            String aTitle = book.getTitle();
-            String aAuthor = book.getAuthor();
-            String aIsbn = book.getIsbn();
-            String aCategory = book.getCategory();
+            if(book.getTitle().equals(title) || book.getAuthor().equals(author) || book.getIsbn().equals(isbn) || book.getCategory().equals(category) ){
 
-            if(aTitle.equals(title) || aAuthor.equals(author) || aIsbn.equals(isbn) || aCategory.equals(category) ){
-
-                seach.add(book);
+                search.add(book);
             }
-
-
         }
-        return seach;
+        return search;
     }
 
 
-    public void updateBook(String idBook,String nIsbn, String nTitle, String nAuthor, String nPublisher, String nYear, String nCategory, int nNumber){
+    public void updateBook(ArrayList<Book>bCollection, String id,String nIsbn, String nTitle, String nAuthor, String nPublisher, String nYear, String nCategory, int nNumber){
 
-        for (Book book : collection){
+        for (Book book : bCollection){
 
-            if (book.getIdBook().equals(idBook)){
+            if (book.getIdBook().equals(id)){
 
                 if(nIsbn != null){
                     book.setIsbn(nIsbn);
@@ -78,14 +69,14 @@ public class BookController {
         }
     }
 
-    public void deleteBook(String idBook){
+    public void deleteBook(ArrayList<Book> bCollection, String id){
 
         int index = 0;
 
-        for (Book book : collection){
+        for (Book book : bCollection){
 
-            if(book.getIdBook().equals(idBook)){
-                collection.remove(index);
+            if(book.getIdBook().equals(id)){
+                bCollection.remove(index);
             }
             else{
                 index = index + 1;
@@ -93,6 +84,5 @@ public class BookController {
         }
 
     }
-
 
 }
