@@ -6,7 +6,6 @@ public abstract class  Person {
     private String cpf;
     private String name;
     private String office;
-    private int age;
     private String nPhone;
     private String email;
 
@@ -44,13 +43,6 @@ public abstract class  Person {
         this.office = office;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getnPhone() {
         return nPhone;

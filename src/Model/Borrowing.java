@@ -12,7 +12,7 @@ public class Borrowing {
     private Calendar dStart;
     private Calendar devolution;
     private Calendar dEnd;
-    private boolean rSituation;
+    private String rSituation;
 
     /*SETS E GETS*/
 
@@ -80,11 +80,11 @@ public class Borrowing {
         this.dEnd = dEnd;
     }
 
-    public boolean getrSituation() {
+    public String getrSituation() {
         return rSituation;
     }
 
-    public void setrSituation(boolean rSituation) {
+    public void setrSituation(String rSituation) {
         this.rSituation = rSituation;
     }
 }

@@ -1,13 +1,13 @@
 package Model.DAO;
 
-import Controller.BookController;
 import Model.Borrowing;
 
-public interface BorrowingDAO {
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
-    public void create (Borrowing aBorrowing, BookController BookImp);
-    public Borrowing read(String idB, String whichList);
-    public void update(String idB, String nIdUser, String nUserName, String nIsbn, String nBookName);
-    public void delete(String idB);
+public interface BorrowingDAO {
+    public String record(Borrowing aBorrow) throws IOException;
+    public ArrayList<File> recover();
 
 }

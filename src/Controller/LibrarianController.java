@@ -1,20 +1,17 @@
 package Controller;
-import Controller.UserController;
 import Model.Book;
 import Controller.Functions;
-import Controller.BorrowingController;
 import Model.Borrowing;
 import Model.Librarian;
-import Model.DAO.BorrowingDAO;
 import Model.User;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class LibrarianController {
 
-    ArrayList <Librarian> collection = new ArrayList<>();
     /*
     * @param name String - nome do bibliotecário
     * @param cpf String - cpf do bibliotecário
@@ -22,46 +19,43 @@ public class LibrarianController {
     * @param age int - idade do bibliotecário
     * @param email String do bibliotecário
     *  */
-    public void create(String name, String cpf, String office, int age, String nPhone, String email){
+
+    Functions function = new Functions();
+
+    public void createLib(ArrayList<Librarian> lCollection, String name, String cpf, String nPhone, String email){
+
         Librarian librarian = new Librarian();
 
+        librarian.setId(function.generateId("l"));
         librarian.setName(name);
         librarian.setCpf(cpf);
-        librarian.setOffice(office);
-        librarian.setAge(age);
+        librarian.setOffice("Blibiotecário");
         librarian.setnPhone(nPhone);
         librarian.setEmail(email);
-        collection.add(librarian);
+        lCollection.add(librarian);
     }
 
-    public ArrayList<Librarian> readLibrarian(String name, String cpf, String office, int age, String nPhone, String email){
+    public Librarian readLib(ArrayList<Librarian> lCollection,String id, String name, String cpf){
 
-        ArrayList<Librarian> seach = new ArrayList<>();
+        Librarian search = new Librarian();
 
-        for (Librarian librarian : collection){
+        for (Librarian librarian : lCollection){
 
-            String aName = librarian.getName();
-            String aCpf = librarian.getCpf();
-            String aOffice = librarian.getOffice();
-            int aAge = librarian.getAge();
-            String anPhone = librarian.getnPhone();
-            String aEmail = librarian.getEmail();
-
-            if(aName.equals(name) || aCpf.equals(cpf) || aOffice.equals(office) || aAge == age || anPhone.equals(nPhone) || aEmail.equals(email) ){
-                seach.add(librarian);
+            if(librarian.getId().equals(id) || librarian.getName().equals(name) || librarian.getCpf().equals(cpf)){
+                search = librarian;
             }
 
         }
-        return seach;
+        return search;
     }
     /*
     * @param idLibrarian String id gerado pela classe de função de forma aleartória necessário para atualização e identificação única de cada bibliotecário
     * */
-    public void updateLibrarian(String idLibrarian,String nName, String nCpf, String nOffice, int nAge, String nPhone, String nEmail) {
+    public void updateLib(ArrayList<Librarian> lCollection, String id,String nName, String nCpf, String nOffice, int nAge, String nPhone, String nEmail) {
 
-        for (Librarian librarian : collection) {
+        for (Librarian librarian : lCollection) {
 
-            if (librarian.getName().equals(idLibrarian)) {
+            if (librarian.getId().equals(id)) {
 
                 if (nName != null) {
                     librarian.setName(nName);
@@ -70,12 +64,7 @@ public class LibrarianController {
                 if (nCpf != null){
                     librarian.setCpf(nCpf);
                 }
-                if (nOffice != null ){
-                    librarian.setOffice(nOffice);
-                }
-                if (librarian.getAge() == 0){
-                    librarian.setAge(nAge);
-                }
+
                 if (librarian.getnPhone() != null){
                     librarian.setnPhone(nPhone);
                 }
@@ -87,14 +76,14 @@ public class LibrarianController {
         }
     }
 
-    public void deleteLibrarian(String idLibrarian){
+    public void deleteLib(ArrayList<Librarian> lCollection, String id){
 
         int index = 0;
 
-        for (Librarian librarian : collection){
+        for (Librarian librarian : lCollection){
 
-            if(librarian.getId().equals(idLibrarian)){
-                collection.remove(index);
+            if(librarian.getId().equals(id)){
+                lCollection.remove(index);
             }
             else{
                 index = index + 1;
@@ -105,9 +94,8 @@ public class LibrarianController {
     /*
     * @param borrowing Borrowing - Tipo de classe responsável pelo empréstimo
     *  @return borrowing retorna um tipo Borrowing  que contém as informações do empréstimo do(s) livros*/
-    public Borrowing borrowingLibrarian(Borrowing borrowing, User user, ArrayList<Book> borrowedBooks, Book book) {
 
-        Functions bfunctions = new Functions();
+    /*public Borrowing borrowingLibrarian(Borrowing borrowing, User user, ArrayList<Book> borrowedBooks, Book book) {
 
         String newIdB = bfunctions.generateId("br");
         String nidUser = bfunctions.generateId("us");
@@ -126,14 +114,10 @@ public class LibrarianController {
 
             } else borrowedBooks.add(book);
 
-        }return borrowing;
-
-    }
-    public void blockUser(Borrowing borrowing, User user, ArrayList<Book> borrowedBooks){
-        if(borrowing.getrSituation()!=false){
-            System.out.println("Usuario nao pode pegar livro emprestado.");
-        }
+        } return borrowing;
 
 
-    }
+    }*/
+
+
 }

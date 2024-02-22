@@ -1,12 +1,9 @@
 package Controller;
 import Model.User;
-import Model.Book;
-import Model.DAO.UserDAO;
 import java.util.ArrayList;
 
 
 public class UserController {
-    ArrayList <User> collection = new ArrayList<>();
     /*
      * @param name String - nome do usuário
      * @param cpf String - cpf do usuário
@@ -14,48 +11,46 @@ public class UserController {
      * @param age int - idade do usuário
      * @param email String do usuário
      *  */
-    public void create(String name, String cpf, String office, int age, String nPhone, String email){
+
+    Functions function = new Functions();
+
+    public void createUser(ArrayList<User> uCollection, String cpf, String name, String nPhone, String email, String address){
+
         User user = new User();
 
+        user.setId(function.generateId("u"));
         user.setName(name);
         user.setCpf(cpf);
-        user.setOffice(office);
-        user.setAge(age);
+        user.setOffice("Usuário");
         user.setnPhone(nPhone);
         user.setEmail(email);
-        collection.add(user);
+        user.setAddress(address);
+
+        uCollection.add(user);
     }
 
-    public ArrayList<User> readUser(String name, String cpf, String office, int age, String nPhone, String email){
+    public User readUser(ArrayList<User> uCollection, String id, String name, String cpf){
 
-        ArrayList<User> seach = new ArrayList<>();
+        User search = new User();
 
-        for (User user : collection){
+        for (User user : uCollection){
 
-            String aName = user.getName();
-            String aCpf = user.getCpf();
-            String aOffice = user.getOffice();
-            int aAge = user.getAge();
-            String anPhone = user.getnPhone();
-            String aEmail = user.getEmail();
+            if(user.getId().equals(id) || user.getName().equals(name) || user.getCpf().equals(cpf) ){
 
-            if(aName.equals(name) || aCpf.equals(cpf) || aOffice.equals(office) || aAge == age || anPhone.equals(nPhone) || aEmail.equals(email) ){
-
-                seach.add(user);
+                search = user;
             }
-
         }
-        return seach;
+        return search;
     }
 
     /*
      * @param idLibrarian String id gerado pela classe de função de forma aleartória necessário para atualização e identificação única de cada usuário
      * */
-    public void updateUser(String idUser,String nName, String nCpf, String nOffice, int nAge, String nPhone, String nEmail) {
+    public void updateUser(ArrayList<User> uCollection, String idUser,String nName, String nCpf, String nPhone, String nEmail,String nAddress) {
 
-        for (User user : collection) {
+        for (User user : uCollection) {
 
-            if (user.getName().equals(idUser)) {
+            if (user.getId().equals(idUser)) {
 
                 if (nName != null) {
                     user.setName(nName);
@@ -64,34 +59,31 @@ public class UserController {
                 if (nCpf != null){
                     user.setCpf(nCpf);
                 }
-                if (nOffice != null ){
-                    user.setOffice(nOffice);
-                }
-                if (user.getAge() == 0){
-                    user.setAge(nAge);
-                }
-                if (user.getnPhone() != null){
+                if(nPhone != null){
                     user.setnPhone(nPhone);
                 }
-                if (user.getEmail() != null){
-                    user.setOffice(nEmail);
+                if(nEmail != null){
+                    user.setEmail(nEmail);
+                }
+                if(nAddress != null){
+                    user.setAddress(nAddress);
                 }
             }
-
         }
     }
 
-    public void deleteUser(String idUser) {
+    public void deleteUser(ArrayList<User> uCollection, String idUser) {
 
         int index = 0;
 
-        for (User user : collection) {
+        for (User user : uCollection) {
 
             if (user.getId().equals(idUser)) {
-                collection.remove(index);
+                uCollection.remove(index);
             } else {
                 index = index + 1;
             }
         }
     }
+
 }
